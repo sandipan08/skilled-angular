@@ -1,0 +1,18 @@
+<form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" placeholder="Enter email" formControlName="email" [ngClass]="{'is-invalid': studentForm.get('email').touched && studentForm.get('email').invalid}">
+      <div *ngIf="studentForm.get('email').touched && studentForm.get('email').invalid" class="invalid-feedback">
+          <div *ngIf="studentForm.get('email').errors.required">Email is required</div>
+          <div *ngIf="studentForm.get('email').errors.email">Must be a valid email address</div>
+      </div>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" placeholder="Enter password" formControlName="password" [ngClass]="{'is-invalid': studentForm.get('password').touched && studentForm.get('password').invalid}">
+        <div class="invalid-feedback">
+            <div>Password is required</div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!studentForm.valid">Submit</button>
+  </form>
